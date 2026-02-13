@@ -165,6 +165,7 @@ Para CADA parte que eu pedir para desenvolver, você DEVE:
    - Rodar as migrations (`php artisan migrate`)
    - Rodar os seeders (`php artisan db:seed`)
    - Verificar que as rotas existem (`php artisan route:list`)
+   - Rodar testes automatizados se existirem (`php artisan test`)
    - Testar no navegador que as páginas carregam sem erro
    - Testar que os CRUDs funcionam (criar, editar, listar, excluir)
    - Testar que as validações funcionam (submeter formulário vazio, dados inválidos)
@@ -218,7 +219,9 @@ Este projeto está sendo desenvolvido usando o **GitHub Copilot Coding Agent**. 
 - Use strict types (`declare(strict_types=1);`) em todos os arquivos PHP
 
 ### Testes e Validação
-- Execute os testes antes de reportar conclusão de tarefas
+- Execute os testes automatizados antes de reportar conclusão de tarefas (`php artisan test`)
+- Crie testes Feature para funcionalidades críticas quando apropriado
+- Teste manualmente todas as funcionalidades desenvolvidas
 - Verifique logs de erro do Laravel (`storage/logs/laravel.log`)
 - Teste todas as rotas e funcionalidades manualmente quando possível
 - Valide que não há erros de sintaxe ou warnings PHP
