@@ -1,66 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# DRAKE System - People and Process Management
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive web-based system for managing people and processes in complex operations, inspired by DRAKE (Sapiensia).
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Multi-Tenant SaaS Platform
+- Complete tenant isolation with `tenant_id` segregation
+- Support for multiple companies under single deployment
+- Configurable tenant settings
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Role-Based Access Control (RBAC)
+- Flexible roles and permissions system
+- Permission assignment by resource and action
+- User-role associations
+- Built-in roles: Administrator, Manager, User
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Core Modules
 
-## Learning Laravel
+#### 1. Base Registrations
+- **Companies**: Manage multiple companies with legal information
+- **Units/Locations**: Organizational units, bases, platforms
+- **Positions**: Job positions and levels
+- **Teams**: Work teams with leaders
+- **Shifts**: Work shift configurations
+- **Collaborators**: Employee/contractor management
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### 2. Work Schedules
+- Schedule planning and management
+- Shift assignment and tracking
+- Schedule status tracking (planned, confirmed, completed)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### 3. Compliance & Qualifications
+- Qualification matrix by position/team/unit
+- Training management (online/in-person)
+- Training validity and expiration tracking
+- Automatic recycling predictions
+- Training records with scores and status
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### 4. Additional Modules (Database Ready)
+- Logistics: Travel requests, purchase approvals
+- HR: Vacation requests, events, timesheets
+- Operations: Activities, absences, operational costs
 
-## Laravel Sponsors
+### Dashboard & Reporting
+- Real-time KPI indicators
+- Today's schedules overview
+- Expiring trainings alerts
+- Pending approvals summary
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Technology Stack
 
-### Premium Partners
+- **Backend**: PHP 8.3+ / Laravel 10.x
+- **Database**: MySQL 8.0
+- **Frontend**: Bootstrap 5, Bootstrap Icons
+- **Authentication**: Laravel UI
+- **Architecture**: MVC Pattern
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Installation
 
-## Contributing
+See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Quick Start
 
-## Code of Conduct
+```bash
+# Clone repository
+git clone https://github.com/priscilaenorthon-dev/Drake3_github.git
+cd Drake3_github
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Install dependencies
+composer install
 
-## Security Vulnerabilities
+# Configure environment
+cp .env.example .env
+php artisan key:generate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Configure database in .env, then:
+php artisan migrate
+php artisan db:seed
+
+# Start server
+php artisan serve
+```
+
+### Default Login
+
+- **Admin**: admin@drake.com / password
+- **Manager**: manager@drake.com / password
+
+## Project Structure
+
+```
+Drake3_github/
+├── app/
+│   ├── Http/Controllers/     # Controllers for all modules
+│   ├── Models/               # Eloquent models
+│   └── Traits/               # Reusable traits (BelongsToTenant)
+├── database/
+│   ├── migrations/           # Database schema
+│   └── seeders/              # Sample data
+├── resources/
+│   └── views/                # Blade templates
+├── routes/
+│   └── web.php              # Application routes
+└── INSTALL.md               # Installation guide
+```
+
+## Default Data
+
+The seed process creates:
+- Demo tenant with settings
+- 3 roles (Admin, Manager, User) with permissions
+- 2 sample users
+- Sample company "ACME Corporation"
+- 2 units (Plataforma Alpha, Base Logística)
+- 2 positions, teams, shifts
+- 2 sample collaborators
+- Sample work schedules and training records
+
+## Security Features
+
+- Multi-tenant data isolation
+- RBAC with granular permissions
+- Password hashing
+- CSRF protection
+- SQL injection prevention
+- Audit trail logging
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Open-source software for demonstration purposes.
