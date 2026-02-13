@@ -2,63 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WorkSchedule;
 use Illuminate\Http\Request;
 
 class WorkScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $workSchedules = WorkSchedule::with(['collaborator', 'shift', 'location'])
+            ->orderBy('schedule_date', 'desc')
+            ->paginate(15);
+        return view('work-schedules.index', compact('workSchedules'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('work-schedules.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(WorkSchedule $workSchedule)
+    {
+        return view('work-schedules.show', compact('workSchedule'));
+    }
+
+    public function edit(WorkSchedule $workSchedule)
+    {
+        return view('work-schedules.edit', compact('workSchedule'));
+    }
+
+    public function update(Request $request, WorkSchedule $workSchedule)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy(WorkSchedule $workSchedule)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $workSchedule->delete();
+        return redirect()->route('work-schedules.index')
+            ->with('success', 'Escala excluída com sucesso.');
     }
 }
