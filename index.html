@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drake3 - Sistema de Gerenciamento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>Drake3</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#features">Recursos</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Bem-vindo ao Drake3</h2>
+                <p>Sistema moderno de gerenciamento e controle</p>
+                <button class="btn-primary" onclick="showDashboard()">Acessar Dashboard</button>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Recursos Principais</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h3>Análise de Dados</h3>
+                        <p>Visualize e analise seus dados em tempo real</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔒</div>
+                        <h3>Segurança</h3>
+                        <p>Proteção avançada para seus dados</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">⚡</div>
+                        <h3>Performance</h3>
+                        <p>Sistema otimizado e rápido</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📱</div>
+                        <h3>Responsivo</h3>
+                        <p>Acesse de qualquer dispositivo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="dashboard">
+            <div class="container">
+                <h2>Dashboard</h2>
+                <div class="dashboard-grid">
+                    <div class="stats-card">
+                        <h3>Usuários Ativos</h3>
+                        <div class="stat-number">1,234</div>
+                        <div class="stat-change positive">+12% este mês</div>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Tarefas Concluídas</h3>
+                        <div class="stat-number">567</div>
+                        <div class="stat-change positive">+8% este mês</div>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Projetos Ativos</h3>
+                        <div class="stat-number">42</div>
+                        <div class="stat-change neutral">Sem alteração</div>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Receita</h3>
+                        <div class="stat-number">R$ 89,5k</div>
+                        <div class="stat-change positive">+15% este mês</div>
+                    </div>
+                </div>
+                
+                <div class="task-manager">
+                    <h3>Gerenciador de Tarefas</h3>
+                    <div class="task-input">
+                        <input type="text" id="taskInput" placeholder="Adicionar nova tarefa...">
+                        <button onclick="addTask()" class="btn-primary">Adicionar</button>
+                    </div>
+                    <ul id="taskList" class="task-list"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contato</h2>
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Enviar</button>
+                </form>
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Drake3. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

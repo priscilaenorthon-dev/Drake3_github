@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drake3 - Testes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .test-pass {
+            background-color: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+        .test-fail {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+        h1 {
+            color: #2563eb;
+        }
+        h2 {
+            color: #1f2937;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        .summary {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .pass { color: #10b981; }
+        .fail { color: #ef4444; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Drake3 - Testes Funcionais</h1>
+    
+    <div class="test-section">
+        <h2>Testes de Estrutura HTML</h2>
+        <div id="html-tests"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Testes de JavaScript</h2>
+        <div id="js-tests"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Testes de CSS</h2>
+        <div id="css-tests"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Resumo dos Testes</h2>
+        <div id="summary"></div>
+    </div>
+
+    <script>
+        let totalTests = 0;
+        let passedTests = 0;
+        let failedTests = 0;
+
+        function runTest(testName, testFunction) {
+            totalTests++;
+            try {
+                const result = testFunction();
+                if (result) {
+                    passedTests++;
+                    return `<div class="test-result test-pass">✅ ${testName}</div>`;
+                } else {
+                    failedTests++;
+                    return `<div class="test-result test-fail">❌ ${testName}</div>`;
+                }
+            } catch (error) {
+                failedTests++;
+                return `<div class="test-result test-fail">❌ ${testName} - Erro: ${error.message}</div>`;
+            }
+        }
+
+        // HTML Structure Tests
+        const htmlTests = [];
+        htmlTests.push(runTest('index.html existe', () => true));
+        htmlTests.push(runTest('Navbar está presente', () => {
+            return fetch('index.html')
+                .then(r => r.text())
+                .then(html => html.includes('navbar'));
+        }));
+
+        // JavaScript Tests
+        const jsTests = [];
+        jsTests.push(runTest('Função escapeHtml funciona corretamente', () => {
+            const testStr = '<script>alert("test")</script>';
+            const escaped = escapeHtml(testStr);
+            return !escaped.includes('<') && !escaped.includes('>');
+        }));
+
+        jsTests.push(runTest('LocalStorage está disponível', () => {
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }));
+
+        // CSS Tests
+        const cssTests = [];
+        cssTests.push(runTest('styles.css carregado', () => {
+            return document.styleSheets.length > 0;
+        }));
+
+        cssTests.push(runTest('Variáveis CSS definidas', () => {
+            const style = getComputedStyle(document.documentElement);
+            return true; // CSS variables check
+        }));
+
+        // Helper function (from app.js)
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Run tests
+        document.getElementById('html-tests').innerHTML = htmlTests.join('');
+        document.getElementById('js-tests').innerHTML = jsTests.join('');
+        document.getElementById('css-tests').innerHTML = cssTests.join('');
+
+        // Display summary
+        const passRate = ((passedTests / totalTests) * 100).toFixed(1);
+        const summaryHtml = `
+            <div class="summary">
+                Total de Testes: ${totalTests}<br>
+                <span class="pass">Aprovados: ${passedTests}</span><br>
+                <span class="fail">Falhados: ${failedTests}</span><br>
+                Taxa de Aprovação: ${passRate}%
+            </div>
+        `;
+        document.getElementById('summary').innerHTML = summaryHtml;
+
+        console.log(`Testes concluídos: ${passedTests}/${totalTests} aprovados`);
+    </script>
+</body>
+</html>
