@@ -41,6 +41,12 @@ Implementar um **Global Scope** automático:
 
 ```php
 // app/Scopes/CompanyScope.php
+namespace App\Scopes;
+
+use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+
 class CompanyScope implements Scope
 {
     public function apply(Builder $builder, Model $model)
@@ -52,6 +58,12 @@ class CompanyScope implements Scope
 }
 
 // Trait para usar nos Models
+// app/Traits/BelongsToCompany.php
+namespace App\Traits;
+
+use App\Models\Company;
+use App\Scopes\CompanyScope;
+
 trait BelongsToCompany
 {
     protected static function bootBelongsToCompany()
