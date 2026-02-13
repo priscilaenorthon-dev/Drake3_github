@@ -167,7 +167,7 @@ vercel --prod
 ## 🔧 Personalizações Rápidas (Se o Cliente Pedir)
 
 ### Mudar Cores
-Editar `styles.css` linha 11-17:
+Editar `styles.css` linhas 7-16:
 ```css
 :root {
     --primary-color: #2563eb; /* Cor principal */
