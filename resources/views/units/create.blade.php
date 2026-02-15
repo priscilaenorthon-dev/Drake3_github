@@ -59,7 +59,7 @@
             <div class="mb-3">
                 <div class="form-check">
                     <input type="hidden" name="active" value="0">
-                    <input type="checkbox" name="active" id="active" class="form-check-input" value="1" {{ old('active', true) ? 'checked' : '' }}>
+                    <input type="checkbox" name="active" id="active" class="form-check-input" value="1" {{ old('active', 1) == 1 ? 'checked' : '' }}>
                     <label for="active" class="form-check-label">Ativo</label>
                 </div>
             </div>
