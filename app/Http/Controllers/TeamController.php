@@ -17,8 +17,8 @@ class TeamController extends Controller
 
     public function create()
     {
-        $units = Unit::where('active', true)->get();
-        $users = User::all();
+        $units = Unit::where('active', true)->select('id', 'name')->get();
+        $users = User::where('active', true)->select('id', 'name')->get();
         return view('teams.create', compact('units', 'users'));
     }
 
@@ -47,8 +47,8 @@ class TeamController extends Controller
 
     public function edit(Team $team)
     {
-        $units = Unit::where('active', true)->get();
-        $users = User::all();
+        $units = Unit::where('active', true)->select('id', 'name')->get();
+        $users = User::where('active', true)->select('id', 'name')->get();
         return view('teams.edit', compact('team', 'units', 'users'));
     }
 

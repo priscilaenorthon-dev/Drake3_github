@@ -16,7 +16,7 @@ class UnitController extends Controller
 
     public function create()
     {
-        $companies = Company::where('active', true)->get();
+        $companies = Company::where('active', true)->select('id', 'name')->get();
         return view('units.create', compact('companies'));
     }
 
@@ -44,7 +44,7 @@ class UnitController extends Controller
 
     public function edit(Unit $unit)
     {
-        $companies = Company::where('active', true)->get();
+        $companies = Company::where('active', true)->select('id', 'name')->get();
         return view('units.edit', compact('unit', 'companies'));
     }
 

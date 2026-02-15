@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collaborator;
+use App\Models\Company;
+use App\Models\Position;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class CollaboratorController extends Controller
@@ -16,9 +19,9 @@ class CollaboratorController extends Controller
 
     public function create()
     {
-        $companies = \App\Models\Company::where('active', true)->get();
-        $positions = \App\Models\Position::where('active', true)->get();
-        $teams = \App\Models\Team::where('active', true)->get();
+        $companies = Company::where('active', true)->select('id', 'name')->get();
+        $positions = Position::where('active', true)->select('id', 'name')->get();
+        $teams = Team::where('active', true)->select('id', 'name')->get();
         return view('collaborators.create', compact('companies', 'positions', 'teams'));
     }
 
@@ -50,9 +53,9 @@ class CollaboratorController extends Controller
 
     public function edit(Collaborator $collaborator)
     {
-        $companies = \App\Models\Company::where('active', true)->get();
-        $positions = \App\Models\Position::where('active', true)->get();
-        $teams = \App\Models\Team::where('active', true)->get();
+        $companies = Company::where('active', true)->select('id', 'name')->get();
+        $positions = Position::where('active', true)->select('id', 'name')->get();
+        $teams = Team::where('active', true)->select('id', 'name')->get();
         return view('collaborators.edit', compact('collaborator', 'companies', 'positions', 'teams'));
     }
 

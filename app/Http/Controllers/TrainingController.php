@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Training;
+use App\Models\Qualification;
 use Illuminate\Http\Request;
 
 class TrainingController extends Controller
@@ -16,7 +17,7 @@ class TrainingController extends Controller
 
     public function create()
     {
-        $qualifications = \App\Models\Qualification::where('active', true)->get();
+        $qualifications = Qualification::where('active', true)->select('id', 'name')->get();
         return view('trainings.create', compact('qualifications'));
     }
 
@@ -46,7 +47,7 @@ class TrainingController extends Controller
 
     public function edit(Training $training)
     {
-        $qualifications = \App\Models\Qualification::where('active', true)->get();
+        $qualifications = Qualification::where('active', true)->select('id', 'name')->get();
         return view('trainings.edit', compact('training', 'qualifications'));
     }
 
