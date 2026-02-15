@@ -282,6 +282,26 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('units.*') ? 'active' : '' }}" href="{{ route('units.index') }}">
+                                <i class="bi bi-geo-alt-fill"></i> Unidades
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('positions.*') ? 'active' : '' }}" href="{{ route('positions.index') }}">
+                                <i class="bi bi-briefcase-fill"></i> Cargos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('teams.*') ? 'active' : '' }}" href="{{ route('teams.index') }}">
+                                <i class="bi bi-people"></i> Equipes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('shifts.*') ? 'active' : '' }}" href="{{ route('shifts.index') }}">
+                                <i class="bi bi-clock-fill"></i> Turnos
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('collaborators.*') ? 'active' : '' }}" href="{{ route('collaborators.index') }}">
                                 <i class="bi bi-people-fill"></i> Colaboradores
                             </a>
